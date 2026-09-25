@@ -250,5 +250,29 @@
     }
   </script>
 
+  <script>
+async function generateEpisode() {
+  try {
+    const response = await fetch("https://no-u.onrender.com/generate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({})
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to generate episode");
+    }
+
+    document.getElementById("output").textContent = data.episode;
+  } catch (error) {
+    console.error(error);
+    alert("Something went wrong generating the episode.");
+  }
+}
+</script>
 </body>
 </html>
