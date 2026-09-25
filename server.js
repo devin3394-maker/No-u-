@@ -37,7 +37,9 @@ Include:
 });
 
 const PORT = process.env.PORT || 3000;
-
+app.get("/", (req, res) => {
+  res.send("No U Shorts API is live!");
+});
 app.listen(PORT, () => {
   console.log(`No U Shorts server running on port ${PORT}`);
 });
