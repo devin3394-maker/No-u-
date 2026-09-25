@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>No U Shorts</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b0f;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 22px;
+      border-bottom: 1px solid #25252d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: #7c5cff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 25px 18px;
+    }
+
+    .hero {
+      padding: 25px 0;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #a7a7b2;
+      font-size: 16px;
+    }
+
+    .card {
+      background: #15151c;
+      border: 1px solid #282832;
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      background: #0d0d12;
+      color: white;
+      border: 1px solid #30303a;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      background: #7c5cff;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .episode {
+      border: 1px solid #292932;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 12px;
+      background: #101016;
+    }
+
+    .episode h3 {
+      margin-bottom: 7px;
+    }
+
+    .episode p {
+      color: #aaaab5;
+      line-height: 1.5;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #24202f;
+      color: #bbaeff;
+      font-size: 13px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: #666673;
+      padding: 35px 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">No <span>U</span> Shorts</div>
+    <div>AI Story Studio</div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <h1>Create Your Next Short</h1>
+      <p>
+        Build AI story episodes, keep your characters consistent,
+        and turn your ideas into short-form content.
+      </p>
+    </section>
+
+    <section class="card">
+
+      <label for="episode">Episode Number</label>
+      <input id="episode" type="number" value="1" min="1">
+
+      <label for="title">Episode Title</label>
+      <input id="title" type="text" placeholder="Enter episode title">
+
+      <label for="story">Story Idea</label>
+      <textarea id="story" placeholder="Describe what happens in this episode..."></textarea>
+
+      <label for="style">Video Style</label>
+      <select id="style">
+        <option>Cinematic AI Story</option>
+        <option>Dark Mystery</option>
+        <option>Comedy</option>
+        <option>Action</option>
+        <option>Horror</option>
+      </select>
+
+      <button onclick="generateEpisode()">Generate Episode</button>
+
+    </section>
+
+    <section id="result" class="card hidden">
+      <h2>Generated Episode</h2>
+
+      <div class="episode">
+        <h3 id="resultTitle"></h3>
+        <p id="resultStory"></p>
+        <div class="status">Ready for production</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Your Episodes</h2>
+
+      <div id="episodes">
+        <div class="episode">
+          <h3>Episode 1</h3>
+          <p>Start your No U Shorts story here.</p>
+          <div class="status">Draft</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    No U Shorts • AI Story Studio
+  </footer>
+
+  <script>
+    function generateEpisode() {
+
+      const episode =
+        document.getElementById("episode").value;
+
+      const title =
+        document.getElementById("title").value ||
+        "Untitled Episode";
+
+      const story =
+        document.getElementById("story").value ||
+        "A new mystery begins...";
+
+      document.getElementById("resultTitle").textContent =
+        "Episode " + episode + ": " + title;
+
+      document.getElementById("resultStory").textContent =
+        story;
+
+      document.getElementById("result").classList.remove("hidden");
+
+      const newEpisode =
+        document.createElement("div");
+
+      newEpisode.className = "episode";
+
+      newEpisode.innerHTML =
+        "<h3>Episode " + episode + ": " +
+        title + "</h3>" +
+        "<p>" + story + "</p>" +
+        '<div class="status">Ready for production</div>';
+
+      document.getElementById("episodes")
+        .appendChild(newEpisode);
+    }
+  </script>
+
+</body>
+</html>
