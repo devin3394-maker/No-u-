@@ -29,7 +29,7 @@ Include:
     });
   } catch (error) {
     console.error(error);
-
+console.error(error?.response?.data || error);
     res.status(500).json({
       error: "Failed to generate episode",
     });
