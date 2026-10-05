@@ -45,7 +45,7 @@ console.error(error?.response?.data || error);
 
 const PORT = process.env.PORT || 3000;
 app.get("/", (req, res) => {
-  res.send("No U Shorts API is live!");
+    res.sendFile("index.html", { root: process.cwd() });
 });
 app.listen(PORT, () => {
   console.log(`No U Shorts server running on port ${PORT}`);
